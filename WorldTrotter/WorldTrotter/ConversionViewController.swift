@@ -69,10 +69,6 @@ class ConversionViewController: UIViewController, UITextFieldDelegate
         }
     }
     
-    override func viewDidLoad() {
-        celsiusLabel.text = "???"
-    }
-    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool
     {
         let existingTextHasDecimalSeprator = textField.text?.range(of: ".")
@@ -93,6 +89,24 @@ class ConversionViewController: UIViewController, UITextFieldDelegate
         else
         {
             return false
+        }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        print("ConversionViewController loaded its view")
+        celsiusLabel.text = "???"
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        let hour = Calendar.current.component(.hour, from: Date())
+        if hour >= 6 && hour < 18
+        {
+            view.backgroundColor = UIColor.yellow
+        }
+        else
+        {
+            view.backgroundColor = UIColor.lightGray
         }
     }
 }
