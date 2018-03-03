@@ -94,12 +94,22 @@
         <!--Map-->
         <scene sceneID="vBM-u6-5Nu">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="qj0-ES-4xV" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="jiA-cZ-zhd" customClass="MapViewController" customModule="WorldTrotter" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Map" image="MapIcon" id="Key-HZ-sY6"/>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qj0-ES-4xV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1575" y="36"/>
+        </scene>
+        <!--Web-->
+        <scene sceneID="E7k-hr-1Iv">
+            <objects>
+                <viewController id="L00-WT-CZs" customClass="WebViewController" customModule="WorldTrotter" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Web" image="MapIcon" id="XFg-4L-Y2n"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CkJ-Fo-gJn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1238" y="774"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="0pz-XM-6dx">
@@ -114,6 +124,7 @@
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="1WH-hW-qEq"/>
                         <segue destination="jiA-cZ-zhd" kind="relationship" relationship="viewControllers" id="VQP-Uj-FAC"/>
+                        <segue destination="L00-WT-CZs" kind="relationship" relationship="viewControllers" id="MH7-HV-IM9"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w9n-St-ZRx" userLabel="First Responder" sceneMemberID="firstResponder"/>
