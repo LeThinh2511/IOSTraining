@@ -15,6 +15,7 @@
 		32BAA6CE2063A0B900C16144 /* HomepwnerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32BAA6CD2063A0B900C16144 /* HomepwnerUITests.swift */; };
 		32BAA6DC2063A2B700C16144 /* ItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32BAA6DB2063A2B700C16144 /* ItemsViewController.swift */; };
 		32BAA6DE2063A45300C16144 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32BAA6DD2063A45300C16144 /* Item.swift */; };
+		32BAA6E02063ACFE00C16144 /* ItemStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32BAA6DF2063ACFE00C16144 /* ItemStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		32BAA6CF2063A0B900C16144 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		32BAA6DB2063A2B700C16144 /* ItemsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsViewController.swift; sourceTree = "<group>"; };
 		32BAA6DD2063A45300C16144 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		32BAA6DF2063ACFE00C16144 /* ItemStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 				32BAA6AD2063A0B900C16144 /* AppDelegate.swift */,
 				32BAA6DB2063A2B700C16144 /* ItemsViewController.swift */,
 				32BAA6DD2063A45300C16144 /* Item.swift */,
+				32BAA6DF2063ACFE00C16144 /* ItemStore.swift */,
 				32BAA6B12063A0B900C16144 /* Main.storyboard */,
 				32BAA6B42063A0B900C16144 /* Assets.xcassets */,
 				32BAA6B62063A0B900C16144 /* LaunchScreen.storyboard */,
@@ -264,6 +267,7 @@
 			files = (
 				32BAA6DC2063A2B700C16144 /* ItemsViewController.swift in Sources */,
 				32BAA6DE2063A45300C16144 /* Item.swift in Sources */,
+				32BAA6E02063ACFE00C16144 /* ItemStore.swift in Sources */,
 				32BAA6AE2063A0B900C16144 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
