@@ -12,6 +12,14 @@ class ItemStore
 {
     var allItems = [Item]()
     
+    func removeItem(_ item: Item)
+    {
+        if let index = self.allItems.index(of: item)
+        {
+            self.allItems.remove(at: index)
+        }
+    }
+    
     @discardableResult func createItem() -> Item
     {
         let newItem = Item()
