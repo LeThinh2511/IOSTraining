@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		32B702E1206E686A00C61BD8 /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B702E0206E686A00C61BD8 /* ItemCell.swift */; };
 		32BAA6AE2063A0B900C16144 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32BAA6AD2063A0B900C16144 /* AppDelegate.swift */; };
 		32BAA6B32063A0B900C16144 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32BAA6B12063A0B900C16144 /* Main.storyboard */; };
 		32BAA6B52063A0B900C16144 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 32BAA6B42063A0B900C16144 /* Assets.xcassets */; };
@@ -36,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		32B702E0206E686A00C61BD8 /* ItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
 		32BAA6AA2063A0B900C16144 /* Homepwner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Homepwner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		32BAA6AD2063A0B900C16144 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		32BAA6B22063A0B900C16144 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -103,6 +105,7 @@
 			children = (
 				32BAA6AD2063A0B900C16144 /* AppDelegate.swift */,
 				32BAA6DB2063A2B700C16144 /* ItemsViewController.swift */,
+				32B702E0206E686A00C61BD8 /* ItemCell.swift */,
 				32BAA6DD2063A45300C16144 /* Item.swift */,
 				32BAA6DF2063ACFE00C16144 /* ItemStore.swift */,
 				32BAA6B12063A0B900C16144 /* Main.storyboard */,
@@ -269,6 +272,7 @@
 				32BAA6DE2063A45300C16144 /* Item.swift in Sources */,
 				32BAA6E02063ACFE00C16144 /* ItemStore.swift in Sources */,
 				32BAA6AE2063A0B900C16144 /* AppDelegate.swift in Sources */,
+				32B702E1206E686A00C61BD8 /* ItemCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
