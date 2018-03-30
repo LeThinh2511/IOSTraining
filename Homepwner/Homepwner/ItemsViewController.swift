@@ -14,8 +14,8 @@ class ItemsViewController: UITableViewController
     
     @IBAction func addNewItem(_ sender: UIButton)
     {
-        let newItem = itemStore.createItem()
-        
+        let newItem = Item()
+        itemStore.allItems.insert(newItem, at: 0)
         if let index = itemStore.allItems.index(of: newItem)
         {
             let indexPath = IndexPath(row: index, section: 0)
@@ -56,8 +56,16 @@ class ItemsViewController: UITableViewController
         let cell = tableView.dequeueReusableCell(withIdentifier: "UITableViewCell", for: indexPath)
         
         let item = itemStore.allItems[indexPath.row]
+        
+        if item.name != "No more item!"
+        {
+            cell.detailTextLabel?.text = "$\(item.valueInDollars)"
+        }
+        else
+        {
+            cell.detailTextLabel?.text = ""
+        }
         cell.textLabel?.text = item.name
-        cell.detailTextLabel?.text = "$\(item.valueInDollars)"
         return cell
     }
     
@@ -86,7 +94,35 @@ class ItemsViewController: UITableViewController
         }
     }
     
+    
     override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        
+        if destinationIndexPath.row == itemStore.allItems.count - 1
+        {
+            return
+        }
         itemStore.moveItem(from: sourceIndexPath.row, to: destinationIndexPath.row)
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
+        return "Remove"
+    }
+    
+    
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        if indexPath.row == itemStore.allItems.count - 1
+        {
+            return false
+        }
+        return true
+    }
+    
+    
+    override func tableView(_ tableView: UITableView, targetIndexPathForMoveFromRowAt sourceIndexPath: IndexPath, toProposedIndexPath proposedDestinationIndexPath: IndexPath) -> IndexPath {
+        if proposedDestinationIndexPath.row == itemStore.allItems.count - 1
+        {
+            return sourceIndexPath
+        }
+        return proposedDestinationIndexPath
     }
 }

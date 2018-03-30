@@ -19,6 +19,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let itemStore = ItemStore()
         
+        let lastItem = Item(name: "No more item!", serialNumber: nil, valueInDollars: 0)
+        
+        itemStore.allItems.append(lastItem)
+        
         let itemsController = window!.rootViewController as! ItemsViewController
         itemsController.itemStore = itemStore
         
