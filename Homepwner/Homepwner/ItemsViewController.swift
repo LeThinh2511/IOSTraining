@@ -46,7 +46,8 @@ class ItemsViewController: UITableViewController
         tableView.contentInset = insets
         tableView.scrollIndicatorInsets = insets
         
-        tableView.rowHeight = 65
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 65
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -61,6 +62,14 @@ class ItemsViewController: UITableViewController
         
         if item.name != "No more item!"
         {
+            if item.valueInDollars < 50
+            {
+                cell.valueLabel.textColor = .green
+            }
+            else
+            {
+                cell.valueLabel.textColor = .red
+            }
             cell.valueLabel.text = "$\(item.valueInDollars)"
             cell.serialNumberLabel.text = "\(item.serialNumber!)"
         }
@@ -72,6 +81,7 @@ class ItemsViewController: UITableViewController
         cell.nameLabel.text = item.name
         return cell
     }
+    
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath)
     {
@@ -128,5 +138,19 @@ class ItemsViewController: UITableViewController
             return sourceIndexPath
         }
         return proposedDestinationIndexPath
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case "showItem"?:
+            if let row = tableView.indexPathForSelectedRow?.row
+            {
+                let item = itemStore.allItems[row]
+                let detailViewController = segue.destination as! DetailViewController
+                detailViewController.item = item
+            }
+        default:
+            preconditionFailure("Unexpected segue identifier.")
+        }
     }
 }
