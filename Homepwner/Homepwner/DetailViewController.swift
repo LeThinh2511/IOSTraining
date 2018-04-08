@@ -16,6 +16,9 @@ class DetailViewController: UIViewController, UITextFieldDelegate
     @IBOutlet var valueField: UITextField!
     @IBOutlet var dateLabel: UILabel!
     
+    @IBAction func backgroundTapped(_ sender: UITapGestureRecognizer) {
+        view.endEditing(true)
+    }
     var item: Item!
     
     let numberFormatter: NumberFormatter = {
@@ -42,6 +45,8 @@ class DetailViewController: UIViewController, UITextFieldDelegate
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        
+        view.endEditing(true)
         item.name = nameField.text ?? ""
         item.serialNumber = serialNumberField.text ?? ""
         if let valueText = valueField.text, let value = numberFormatter.number(from: valueText)
