@@ -111,10 +111,6 @@ class ItemsViewController: UITableViewController
     
     override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         
-        if destinationIndexPath.row == itemStore.allItems.count - 1
-        {
-            return
-        }
         itemStore.moveItem(from: sourceIndexPath.row, to: destinationIndexPath.row)
     }
     

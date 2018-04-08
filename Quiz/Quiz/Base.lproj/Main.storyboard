@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,46 +18,44 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="?????" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WEE-NP-Yq6">
-                                <rect key="frame" x="186" y="66" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zZ2-uR-UVE">
-                                <rect key="frame" x="158" y="95" width="98" height="30"/>
-                                <state key="normal" title="Next Question"/>
-                                <connections>
-                                    <action selector="showNextQuestion:" destination="BYZ-38-t0r" eventType="touchUpInside" id="p7v-Ae-lQb"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="?????" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wWL-rn-5rR">
-                                <rect key="frame" x="186" y="358" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x0l-VY-sBD">
-                                <rect key="frame" x="161" y="387" width="93" height="30"/>
-                                <state key="normal" title="Show Answer"/>
-                                <connections>
-                                    <action selector="showAnswer:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bt3-pK-GGO"/>
-                                </connections>
-                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="nJC-oR-Gqv">
+                                <rect key="frame" x="8" y="28" width="398" height="700"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="?????" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WEE-NP-Yq6">
+                                        <rect key="frame" x="0.0" y="0.0" width="398" height="175"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zZ2-uR-UVE">
+                                        <rect key="frame" x="0.0" y="175" width="398" height="175"/>
+                                        <state key="normal" title="Next Question"/>
+                                        <connections>
+                                            <action selector="showNextQuestion:" destination="BYZ-38-t0r" eventType="touchUpInside" id="p7v-Ae-lQb"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="?????" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wWL-rn-5rR">
+                                        <rect key="frame" x="0.0" y="350" width="398" height="175"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x0l-VY-sBD">
+                                        <rect key="frame" x="0.0" y="525" width="398" height="175"/>
+                                        <state key="normal" title="Show Answer"/>
+                                        <connections>
+                                            <action selector="showAnswer:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bt3-pK-GGO"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="WEE-NP-Yq6" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="46" id="4Bf-oy-FXv"/>
-                            <constraint firstItem="wWL-rn-5rR" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="5e4-iO-sHg"/>
-                            <constraint firstItem="WEE-NP-Yq6" firstAttribute="centerX" secondItem="zZ2-uR-UVE" secondAttribute="centerX" id="7Mz-cf-eE1"/>
-                            <constraint firstItem="wWL-rn-5rR" firstAttribute="top" secondItem="zZ2-uR-UVE" secondAttribute="bottom" constant="233" id="8rT-Sm-tPZ"/>
-                            <constraint firstItem="wWL-rn-5rR" firstAttribute="centerX" secondItem="zZ2-uR-UVE" secondAttribute="centerX" id="ADr-db-Vm4"/>
-                            <constraint firstItem="zZ2-uR-UVE" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="HjZ-n5-igr"/>
-                            <constraint firstItem="x0l-VY-sBD" firstAttribute="centerX" secondItem="zZ2-uR-UVE" secondAttribute="centerX" id="Xtk-PT-vrr"/>
-                            <constraint firstItem="zZ2-uR-UVE" firstAttribute="top" secondItem="WEE-NP-Yq6" secondAttribute="bottom" constant="8" id="Ya8-WU-2T9"/>
-                            <constraint firstItem="x0l-VY-sBD" firstAttribute="top" secondItem="wWL-rn-5rR" secondAttribute="bottom" constant="8" id="eAv-V0-bS1"/>
-                            <constraint firstItem="WEE-NP-Yq6" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="jh7-xt-KJc"/>
-                            <constraint firstItem="x0l-VY-sBD" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="rvE-Kw-Ubh"/>
+                            <constraint firstItem="nJC-oR-Gqv" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="8" id="7E6-5X-UgL"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="nJC-oR-Gqv" secondAttribute="bottom" constant="8" id="JYz-0c-9Lp"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="nJC-oR-Gqv" secondAttribute="trailing" constant="8" id="Mc9-TO-b27"/>
+                            <constraint firstItem="nJC-oR-Gqv" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="8" id="niS-DW-fFv"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
