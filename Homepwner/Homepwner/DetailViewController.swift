@@ -17,6 +17,8 @@ class DetailViewController: UIViewController, UITextFieldDelegate
     @IBOutlet var dateLabel: UILabel!
     
     @IBOutlet var imageView: UIImageView!
+    @IBAction func takePicture(_ sender: UIBarButtonItem) {
+    }
     @IBAction func backgroundTapped(_ sender: UITapGestureRecognizer) {
         view.endEditing(true)
     }
