@@ -24,6 +24,9 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UINavigationC
             navigationItem.title = item.name
         }
     }
+    
+    var imageStore: ImageStore!
+    
     @IBAction func takePicture(_ sender: UIBarButtonItem) {
         // ???
         let imagePicker = UIImagePickerController()
