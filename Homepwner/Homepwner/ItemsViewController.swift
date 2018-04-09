@@ -61,6 +61,8 @@ class ItemsViewController: UITableViewController
         {
             cell.serialNumberLabel.text = ""
             cell.valueLabel.text = ""
+            cell.selectionStyle = UITableViewCellSelectionStyle.none
+            cell.isUserInteractionEnabled = false
         }
         cell.nameLabel.text = item.name
         return cell
