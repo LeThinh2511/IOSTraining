@@ -10,6 +10,7 @@ import UIKit
 
 class DetailViewController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate
 {
+    @IBOutlet var toolbar: UIToolbar!
     @IBOutlet var nameField: MyUITextField!
     @IBOutlet var serialNumberField: MyUITextField!
     
@@ -27,26 +28,6 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UINavigationC
     
     var imageStore: ImageStore!
     
-    @IBAction func takePicture(_ sender: UIBarButtonItem) {
-        // ???
-        let imagePicker = UIImagePickerController()
-        
-        if UIImagePickerController.isSourceTypeAvailable(.camera)
-        {
-            imagePicker.sourceType = .camera
-        }
-        else
-        {
-            imagePicker.sourceType = .photoLibrary
-        }
-        
-        imagePicker.delegate = self
-        present(imagePicker, animated: true, completion: nil)
-    }
-    @IBAction func backgroundTapped(_ sender: UITapGestureRecognizer) {
-        view.endEditing(true)
-    }
-    
     let numberFormatter: NumberFormatter = {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
@@ -62,12 +43,51 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UINavigationC
         return formatter
     }()
     
+    @objc func deleteImage()
+    {
+        imageStore.deleteImage(forKey: item.itemKey)
+        imageView.image = nil
+    }
+    
+    override func viewDidLoad() {
+        let deleteButtonItem = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(deleteImage))
+        toolbar.items?.append(UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil))
+        toolbar.items?.append(deleteButtonItem)
+    }
+    
+    @IBAction func takePicture(_ sender: UIBarButtonItem) {
+        // ???
+        let imagePicker = UIImagePickerController()
+        imagePicker.allowsEditing = true
+        
+        if UIImagePickerController.isSourceTypeAvailable(.camera)
+        {
+            imagePicker.sourceType = .camera
+        }
+        else
+        {
+            imagePicker.sourceType = .photoLibrary
+        }
+        
+        imagePicker.delegate = self
+        present(imagePicker, animated: true, completion: nil)
+    }
+    
+    @IBAction func backgroundTapped(_ sender: UITapGestureRecognizer) {
+        view.endEditing(true)
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
+        
+        let key = item.itemKey
+        let imageToDisplay = imageStore.image(forKey: key)
+        imageView.image = imageToDisplay
         
         nameField.text = item.name
         serialNumberField.text = item.serialNumber
         valueField.text = numberFormatter.string(from: NSNumber(value: item.valueInDollars))
         dateLabel.text = dateFormatter.string(from: item.dateCreated)
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -102,7 +122,8 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UINavigationC
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        let image = info[UIImagePickerControllerOriginalImage] as! UIImage
+        let image = info[UIImagePickerControllerEditedImage] as! UIImage
+        imageStore.setImage(image, forKey: item.itemKey)
         imageView.image = image
         dismiss(animated: true, completion: nil)
     }

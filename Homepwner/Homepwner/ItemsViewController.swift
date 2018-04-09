@@ -89,6 +89,7 @@ class ItemsViewController: UITableViewController
             let deleteAction = UIAlertAction(title: "Delete", style: .destructive, handler: {(action) -> Void in
                 self.itemStore.removeItem(item)
                 self.tableView.deleteRows(at: [indexPath], with: .automatic)
+                self.imageStore.deleteImage(forKey: item.itemKey)
             })
             ac.addAction(deleteAction)
             present(ac, animated: true, completion: nil)

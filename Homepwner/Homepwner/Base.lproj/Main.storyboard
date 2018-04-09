@@ -218,6 +218,7 @@
                         <outlet property="imageView" destination="4jA-GW-JBg" id="bpt-5Z-m0c"/>
                         <outlet property="nameField" destination="ue9-2k-Ola" id="TXR-Ti-DF6"/>
                         <outlet property="serialNumberField" destination="0iW-4E-C2f" id="nb6-nk-Trd"/>
+                        <outlet property="toolbar" destination="XTL-N1-M0H" id="gCk-eD-dFn"/>
                         <outlet property="valueField" destination="3fO-IU-crr" id="Dg5-6K-EtS"/>
                     </connections>
                 </viewController>
