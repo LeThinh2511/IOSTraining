@@ -10,14 +10,16 @@ import UIKit
 
 class DetailViewController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate
 {
+    
+    // MARK: outlet
     @IBOutlet var toolbar: UIToolbar!
     @IBOutlet var nameField: MyUITextField!
     @IBOutlet var serialNumberField: MyUITextField!
-    
     @IBOutlet var valueField: MyUITextField!
     @IBOutlet var dateLabel: UILabel!
-    
     @IBOutlet var imageView: UIImageView!
+    
+    // MARK: property
     
     var item: Item! {
         didSet
@@ -43,17 +45,7 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UINavigationC
         return formatter
     }()
     
-    @objc func deleteImage()
-    {
-        imageStore.deleteImage(forKey: item.itemKey)
-        imageView.image = nil
-    }
-    
-    override func viewDidLoad() {
-        let deleteButtonItem = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(deleteImage))
-        toolbar.items?.append(UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil))
-        toolbar.items?.append(deleteButtonItem)
-    }
+    // MARK: action
     
     @IBAction func takePicture(_ sender: UIBarButtonItem) {
         // ???
@@ -75,6 +67,14 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UINavigationC
     
     @IBAction func backgroundTapped(_ sender: UITapGestureRecognizer) {
         view.endEditing(true)
+    }
+    
+    // MARK: view life cycle
+    
+    override func viewDidLoad() {
+        let deleteButtonItem = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(deleteImage))
+        toolbar.items?.append(UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil))
+        toolbar.items?.append(deleteButtonItem)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -105,6 +105,15 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UINavigationC
             item.valueInDollars = 0
         }
     }
+    
+   
+    // MARK: function
+    @objc func deleteImage()
+    {
+        imageStore.deleteImage(forKey: item.itemKey)
+        imageView.image = nil
+    }
+    
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
