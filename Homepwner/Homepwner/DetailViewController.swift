@@ -16,6 +16,7 @@ class DetailViewController: UIViewController, UITextFieldDelegate
     @IBOutlet var valueField: MyUITextField!
     @IBOutlet var dateLabel: UILabel!
     
+    @IBOutlet var imageView: UIImageView!
     @IBAction func backgroundTapped(_ sender: UITapGestureRecognizer) {
         view.endEditing(true)
     }
