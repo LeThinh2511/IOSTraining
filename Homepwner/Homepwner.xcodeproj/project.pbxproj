@@ -10,6 +10,7 @@
 		323A7B7A20725B2600A71544 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323A7B7920725B2600A71544 /* DetailViewController.swift */; };
 		324BB09A207B0BE1006E0278 /* MyUITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324BB099207B0BE1006E0278 /* MyUITextField.swift */; };
 		324BB09C207B2199006E0278 /* DateChangeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324BB09B207B2199006E0278 /* DateChangeController.swift */; };
+		324BB09E207B8286006E0278 /* ImageStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324BB09D207B8286006E0278 /* ImageStore.swift */; };
 		32B702E1206E686A00C61BD8 /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B702E0206E686A00C61BD8 /* ItemCell.swift */; };
 		32BAA6AE2063A0B900C16144 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32BAA6AD2063A0B900C16144 /* AppDelegate.swift */; };
 		32BAA6B32063A0B900C16144 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32BAA6B12063A0B900C16144 /* Main.storyboard */; };
@@ -43,6 +44,7 @@
 		323A7B7920725B2600A71544 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		324BB099207B0BE1006E0278 /* MyUITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyUITextField.swift; sourceTree = "<group>"; };
 		324BB09B207B2199006E0278 /* DateChangeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateChangeController.swift; sourceTree = "<group>"; };
+		324BB09D207B8286006E0278 /* ImageStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageStore.swift; sourceTree = "<group>"; };
 		32B702E0206E686A00C61BD8 /* ItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
 		32BAA6AA2063A0B900C16144 /* Homepwner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Homepwner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		32BAA6AD2063A0B900C16144 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 			children = (
 				32BAA6AD2063A0B900C16144 /* AppDelegate.swift */,
 				32BAA6DB2063A2B700C16144 /* ItemsViewController.swift */,
+				324BB09D207B8286006E0278 /* ImageStore.swift */,
 				323A7B7920725B2600A71544 /* DetailViewController.swift */,
 				324BB09B207B2199006E0278 /* DateChangeController.swift */,
 				32B702E0206E686A00C61BD8 /* ItemCell.swift */,
@@ -282,6 +285,7 @@
 				32BAA6DE2063A45300C16144 /* Item.swift in Sources */,
 				32BAA6E02063ACFE00C16144 /* ItemStore.swift in Sources */,
 				323A7B7A20725B2600A71544 /* DetailViewController.swift in Sources */,
+				324BB09E207B8286006E0278 /* ImageStore.swift in Sources */,
 				324BB09C207B2199006E0278 /* DateChangeController.swift in Sources */,
 				32BAA6AE2063A0B900C16144 /* AppDelegate.swift in Sources */,
 				32B702E1206E686A00C61BD8 /* ItemCell.swift in Sources */,
