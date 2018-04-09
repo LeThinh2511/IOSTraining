@@ -102,7 +102,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ue9-2k-Ola">
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ue9-2k-Ola" customClass="MyUITextField" customModule="Homepwner" customModuleProvider="target">
                                                 <rect key="frame" x="53" y="0.0" width="306" height="30"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -122,7 +122,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0iW-4E-C2f">
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0iW-4E-C2f" customClass="MyUITextField" customModule="Homepwner" customModuleProvider="target">
                                                 <rect key="frame" x="53" y="0.0" width="306" height="30"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -142,10 +142,10 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3fO-IU-crr">
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3fO-IU-crr" customClass="MyUITextField" customModule="Homepwner" customModuleProvider="target">
                                                 <rect key="frame" x="53" y="0.0" width="306" height="30"/>
                                                 <nil key="textColor"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <textInputTraits key="textInputTraits"/>
                                                 <connections>
                                                     <outlet property="delegate" destination="tiO-SR-Xxf" id="4T6-wP-U0u"/>
@@ -154,11 +154,18 @@
                                         </subviews>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" text="Date created" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HIQ-x8-uQB">
-                                        <rect key="frame" x="0.0" y="114" width="359" height="473"/>
+                                        <rect key="frame" x="0.0" y="114" width="359" height="435"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zwv-DD-0Lo">
+                                        <rect key="frame" x="0.0" y="557" width="359" height="30"/>
+                                        <state key="normal" title="Change Date"/>
+                                        <connections>
+                                            <segue destination="TiE-Jo-BZj" kind="show" identifier="changeDate" id="aG4-5A-wlf"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="ue9-2k-Ola" firstAttribute="leading" secondItem="0iW-4E-C2f" secondAttribute="leading" id="bSD-G7-3U7"/>
@@ -196,6 +203,38 @@
                 </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1972" y="141.67916041979012"/>
+        </scene>
+        <!--Date Change Controller-->
+        <scene sceneID="3hP-QI-Wx9">
+            <objects>
+                <viewController id="TiE-Jo-BZj" customClass="DateChangeController" customModule="Homepwner" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="fH0-Um-uec">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="zeK-Tm-sWf">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <date key="date" timeIntervalSinceReferenceDate="544940192.53579497">
+                                    <!--2018-04-09 04:16:32 +0000-->
+                                </date>
+                            </datePicker>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="zeK-Tm-sWf" firstAttribute="width" secondItem="fH0-Um-uec" secondAttribute="width" id="KVm-ka-hly"/>
+                            <constraint firstItem="zeK-Tm-sWf" firstAttribute="height" secondItem="fH0-Um-uec" secondAttribute="height" id="VCc-Jn-Ge0"/>
+                            <constraint firstItem="zeK-Tm-sWf" firstAttribute="centerX" secondItem="fH0-Um-uec" secondAttribute="centerX" id="ewc-MU-UC3"/>
+                            <constraint firstItem="zeK-Tm-sWf" firstAttribute="centerY" secondItem="fH0-Um-uec" secondAttribute="centerY" id="rx3-3B-MPD"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="vlp-jW-4jC"/>
+                    </view>
+                    <connections>
+                        <outlet property="datePicker" destination="zeK-Tm-sWf" id="SnM-uH-zcj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="93o-O3-Y1O" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2727" y="142"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="eu8-9F-a2g">

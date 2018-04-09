@@ -10,10 +10,10 @@ import UIKit
 
 class DetailViewController: UIViewController, UITextFieldDelegate
 {
-    @IBOutlet var nameField: UITextField!
-    @IBOutlet var serialNumberField: UITextField!
+    @IBOutlet var nameField: MyUITextField!
+    @IBOutlet var serialNumberField: MyUITextField!
     
-    @IBOutlet var valueField: UITextField!
+    @IBOutlet var valueField: MyUITextField!
     @IBOutlet var dateLabel: UILabel!
     
     @IBAction func backgroundTapped(_ sender: UITapGestureRecognizer) {
@@ -42,6 +42,7 @@ class DetailViewController: UIViewController, UITextFieldDelegate
     }()
     
     override func viewWillAppear(_ animated: Bool) {
+        
         nameField.text = item.name
         serialNumberField.text = item.serialNumber
         valueField.text = numberFormatter.string(from: NSNumber(value: item.valueInDollars))
@@ -67,5 +68,15 @@ class DetailViewController: UIViewController, UITextFieldDelegate
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case "changeDate"?:
+            let dateChangeController = segue.destination as! DateChangeController
+            dateChangeController.item = self.item
+        default:
+            preconditionFailure("Unexpected segue identifier.")
+        }
     }
 }
