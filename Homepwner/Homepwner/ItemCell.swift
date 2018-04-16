@@ -21,3 +21,10 @@ class ItemCell: UITableViewCell
         valueLabel.adjustsFontForContentSizeCategory = true
     }
 }
+
+class MyView : UIView {
+    override func awakeFromNib() {
+        
+    }
+}
+
