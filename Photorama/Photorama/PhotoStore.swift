@@ -52,11 +52,31 @@ class PhotoStore
         let task = session.dataTask(with: request)
         {
             (data, response, error) -> Void in
+            let httpURLRespone = response as? HTTPURLResponse
+            print("fetch interesting photos response: ")
+            print(httpURLRespone?.statusCode ?? "")
+            print(httpURLRespone?.allHeaderFields ?? "")
             let result = self.processPhotosRequest(data: data, error: error)
             DispatchQueue.main.sync {
                 completion(result)
             }
         }
+        task.resume()
+    }
+    
+    func fetchRecentPhotos(completion: @escaping (PhotosResult) -> Void)
+    {
+        let url = FlickrAPI.recentPhotosURL
+        let request = URLRequest(url: url)
+        let task = session.dataTask(with: request, completionHandler: { (data, response, error) -> Void in
+            if let jsonData = data
+            {
+                let result = FlickrAPI.photos(fromJSON: jsonData)
+                DispatchQueue.main.sync {
+                    completion(result)
+                }
+            }
+        })
         task.resume()
     }
     
@@ -67,6 +87,10 @@ class PhotoStore
         let task = session.dataTask(with: request)
         {
             (data, response, error) -> Void in
+            let httpURLRespone = response as? HTTPURLResponse
+            print("fetch interesting photos response: ")
+            print(httpURLRespone?.statusCode ?? "")
+            print(httpURLRespone?.allHeaderFields ?? "")
             let result = self.processImageRequest(data: data, error: error)
             DispatchQueue.main.sync {
                 completion(result)
