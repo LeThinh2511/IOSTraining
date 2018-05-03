@@ -8,6 +8,11 @@
 
 import Foundation
 
+enum flickrError: Error
+{
+    case invalidJSONData
+}
+
 enum Method: String
 {
     case interestingPhotos = "flickr.interestingness.getList"
@@ -17,6 +22,12 @@ struct FlickrAPI
 {
     private static let baseURLString = "https://api.flickr.com/services/rest"
     private static let apiKey = "a6d819499131071f158fd740860a5a88"
+    private static let dateFormatter: DateFormatter =
+    {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        return formatter
+    }()
     
     static var interestingPhotosURL: URL
     {
@@ -53,5 +64,72 @@ struct FlickrAPI
         }
         components.queryItems = queryItems
         return components.url!
+    }
+    
+    static func photos(fromJSON data: Data) -> PhotosResult
+    {
+        do
+        {
+            let jsonObject = try JSONSerialization.jsonObject(with: data, options: [])
+            guard let jsonDictionary = jsonObject as? [AnyHashable:Any], let photos = jsonDictionary["photos"] as? [String:Any], let photosArray = photos["photo"] as? [[String:Any]]
+            else
+            {
+                return .failure(flickrError.invalidJSONData)
+            }
+            var finalPhotos = [Photo]()
+            print(photosArray.count)
+            for photoJSON in photosArray
+            {
+                //print(photoJSON)
+                if let photo = photo(fromJSON: photoJSON)
+                {
+                    finalPhotos.append(photo)
+                }
+            }
+            
+            if finalPhotos.isEmpty && !photosArray.isEmpty
+            {
+                return .failure(flickrError.invalidJSONData)
+            }
+            return .success(finalPhotos)
+            
+        }
+        catch let error
+        {
+            return .failure(error)
+        }
+    }
+    
+    private static func photo(fromJSON json: [String:Any]) -> Photo?
+    {
+//        print("id:\(json["id"])")
+//        print("title: \(json["title"])")
+//        print("dateTaken: \(json["datetaken"])")
+//        print("url: \(json["url_h"])")
+//        if let photoID = json["id"] as? String
+//        {
+//            if let title = json["title"] as? String
+//            {
+//                if let dateString = json["datetaken"] as? String
+//                {
+//                    if let photoURLString = json["url_h"] as? String
+//                    {
+//                        if let url = URL(string: photoURLString)
+//                        {
+//                            if let dateTaken = dateFormatter.date(from: dateString)
+//                            {
+//                                return Photo(title: title, photoID: photoID, remoteURL: url, dateTaken: dateTaken)
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//        }
+        guard let photoID = json["id"] as? String, let title = json["title"] as? String, let dateString = json["datetaken"] as? String, let photoURLString = json["url_h"] as? String, let url = URL(string: photoURLString), let dateTaken = dateFormatter.date(from: dateString)
+        else
+        {
+            return nil
+        }
+        return Photo(title: title, photoID: photoID, remoteURL: url, dateTaken: dateTaken)
     }
 }

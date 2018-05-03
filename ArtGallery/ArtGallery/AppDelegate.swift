@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  Photorama
+//  ArtGallery
 //
 //  Created by ThinhLe on 4/21/18.
 //  Copyright © 2018 ThinhLe. All rights reserved.
@@ -16,10 +16,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        let photoStore = PhotoStore()
-        let navController = window?.rootViewController as! UINavigationController
-        let photosViewController = navController.topViewController as! PhotosViewController
-        photosViewController.store = photoStore
         return true
     }
 

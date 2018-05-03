@@ -11,10 +11,39 @@ import UIKit
 class PhotosViewController: UIViewController
 {
     @IBOutlet var imageView: UIImageView!
-//    //method": "flickr.interestingness.getList
-//    api_key": "a6d819499131071f158fd740860a5a88
-//    extras": "url_h,date_taken
-//    format": "json
-//    nojsoncallback": "1
-//https://api.flickr.com/services/rest
+    var store: PhotoStore!
+    
+    func updateImageView(for photo: Photo)
+    {
+        store.fetchImage(for: photo, completion: {
+            (imageResult) -> Void in
+            switch imageResult
+            {
+            case let .success(image):
+                self.imageView.image = image
+            case let .failure(error):
+                print("Error downloading image: \(error)")
+            }
+        })
+    }
+    
+    override func viewDidLoad()
+    {
+        super.viewDidLoad()
+        store.fetchInterestingPhotos(completion: {(photoResult: PhotosResult) -> Void in
+            switch photoResult
+            {
+            case let .success(photos):
+                print("successfully found \(photos.count) photos")
+                if let firstPhoto = photos.first
+                {
+                    self.updateImageView(for: firstPhoto)
+                }
+            case let .failure(error):
+                print("Error fetching interesting photos: \(error)")
+            }
+            })
+    }
+    
+    
 }

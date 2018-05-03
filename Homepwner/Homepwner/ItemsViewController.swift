@@ -36,6 +36,7 @@ class ItemsViewController: UITableViewController
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print(#function)
         return itemStore.allItems.count
     }
     
