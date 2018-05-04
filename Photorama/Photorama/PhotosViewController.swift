@@ -8,12 +8,17 @@
 
 import UIKit
 
-class PhotosViewController: UIViewController, UICollectionViewDelegate
+class PhotosViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout
 {
     @IBOutlet var collectionView: UICollectionView!
     var store: PhotoStore!
     
     let photoDataSource = PhotoDataSource()
+    
+    var widthCell:CGFloat = 0.0
+    var heightCell:CGFloat = 0.0
+    let numOfCellInLine:CGFloat = 3.0
+    var minSpace:CGFloat = 5.0
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
@@ -29,6 +34,17 @@ class PhotosViewController: UIViewController, UICollectionViewDelegate
             print("error segue")
         }
     }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: widthCell, height: heightCell)
+    }
+    
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+//        return minSpace
+//    }
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+//        return minSpace
+//    }
     
 //    func updateImageView(for photo: Photo)
 //    {
@@ -62,6 +78,18 @@ class PhotosViewController: UIViewController, UICollectionViewDelegate
             }
             self.collectionView.reloadSections(IndexSet(integer: 0))
             })
+    }
+    
+    override func viewDidLayoutSubviews() {
+        let widthFrame = CGFloat(view.frame.width)
+        minSpace = 5
+        
+        self.widthCell = (widthFrame - (numOfCellInLine - 1) * minSpace)  / numOfCellInLine
+        minSpace = widthFrame - numOfCellInLine * widthCell
+        heightCell = widthCell
+        print(widthCell)
+        print(minSpace)
+        print(widthFrame)
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
