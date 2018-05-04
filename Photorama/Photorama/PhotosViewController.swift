@@ -15,6 +15,21 @@ class PhotosViewController: UIViewController, UICollectionViewDelegate
     
     let photoDataSource = PhotoDataSource()
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case "showPhoto":
+            let photoInforViewController = segue.destination as! PhotoInforViewController
+            if let selectedIndexPath = collectionView.indexPathsForSelectedItems?.first
+            {
+                let photo = photoDataSource.photos[selectedIndexPath.row]
+                photoInforViewController.photo = photo
+                photoInforViewController.store = store
+            }
+        default:
+            print("error segue")
+        }
+    }
+    
 //    func updateImageView(for photo: Photo)
 //    {
 //        store.fetchImage(for: photo, completion: {
