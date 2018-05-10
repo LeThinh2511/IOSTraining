@@ -35,6 +35,20 @@ class PhotosViewController: UIViewController, UICollectionViewDelegate, UICollec
         }
     }
     
+    private func updateDataSource()
+    {
+        store.fetchAllPhotos(completion: {(photosResult: PhotosResult) -> Void in
+            switch photosResult
+            {
+            case let .success(photos):
+                self.photoDataSource.photos = photos
+            case .failure:
+                self.photoDataSource.photos.removeAll()
+            }
+            self.collectionView.reloadSections(IndexSet(integer: 0))
+            })
+    }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: widthCell, height: heightCell)
     }
@@ -66,17 +80,9 @@ class PhotosViewController: UIViewController, UICollectionViewDelegate, UICollec
         
         collectionView.dataSource = photoDataSource
         collectionView.delegate = self
+        updateDataSource()
         store.fetchRecentPhotos(completion: {(photoResult: PhotosResult) -> Void in
-            switch photoResult
-            {
-            case let .success(photos):
-                print("successfully found \(photos.count) photos")
-                self.photoDataSource.photos = photos
-            case let .failure(error):
-                print("Error fetching interesting photos: \(error)")
-                self.photoDataSource.photos.removeAll()
-            }
-            self.collectionView.reloadSections(IndexSet(integer: 0))
+            self.updateDataSource()
             })
     }
     

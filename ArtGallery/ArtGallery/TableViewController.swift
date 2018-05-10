@@ -35,10 +35,12 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MyCell", for: indexPath) as! MyCell
+        
         let image = imageStore.store[indexPath.row]
         if let url = image.url
         {
             cell.photo.setImageWith(url)
+            cell.spinner.stopAnimating()
         }
         cell.titleLabel.text = image.title
         if let date = image.dateTaken

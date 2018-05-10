@@ -9,9 +9,6 @@
 import Foundation
 
 
-
-
-
 class DataController
 {
     var manager: AFHTTPSessionManager
@@ -24,6 +21,7 @@ class DataController
     func getData(callback: @escaping ([Image]) -> Void)
     {
         let loadDataQueue = DispatchQueue(label: "loadDataQueue")
+        //let loadData = DispatchQueue(label: "loadData", qos: .default)
         
         //mutex
         self.manager.requestSerializer = AFJSONRequestSerializer(writingOptions: [])

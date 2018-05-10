@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreData
 
 enum flickrError: Error
 {
@@ -72,7 +73,7 @@ struct FlickrAPI
         return components.url!
     }
     
-    static func photos(fromJSON data: Data) -> PhotosResult
+    static func photos(fromJSON data: Data,into context: NSManagedObjectContext) -> PhotosResult
     {
         do
         {
@@ -86,7 +87,7 @@ struct FlickrAPI
             for photoJSON in photosArray
             {
                 //print(photoJSON)
-                if let photo = photo(fromJSON: photoJSON)
+                if let photo = photo(fromJSON: photoJSON, into: context)
                 {
                     finalPhotos.append(photo)
                 }
@@ -105,7 +106,7 @@ struct FlickrAPI
         }
     }
     
-    private static func photo(fromJSON json: [String:Any]) -> Photo?
+    private static func photo(fromJSON json: [String:Any],into context: NSManagedObjectContext) -> Photo?
     {
 //        print("id:\(json["id"])")
 //        print("title: \(json["title"])")
@@ -135,6 +136,28 @@ struct FlickrAPI
         {
             return nil
         }
-        return Photo(title: title, photoID: photoID, remoteURL: url, dateTaken: dateTaken)
+        
+        let fetchRequest: NSFetchRequest<Photo> = Photo.fetchRequest()
+        let predicate = NSPredicate(format: "\(#keyPath(Photo.photoID)) == \(photoID)")
+        fetchRequest.predicate = predicate
+        var fetchPhotos: [Photo]?
+        context.performAndWait {
+            fetchPhotos = try? fetchRequest.execute()
+        }
+        
+        if let existingPhoto = fetchPhotos?.first
+        {
+            return existingPhoto
+        }
+        
+        var photo: Photo!
+        context.performAndWait {
+            photo = Photo(context: context)
+            photo.title = title
+            photo.dateTaken = dateTaken as NSDate
+            photo.photoID = photoID
+            photo.remoteURL = url as NSURL
+        }
+        return photo
     }
 }

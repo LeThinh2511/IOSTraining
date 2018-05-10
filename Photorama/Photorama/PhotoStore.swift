@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import CoreData
 
 enum ImageResult
 {
@@ -30,6 +31,17 @@ class PhotoStore
 {
     let imageStore = ImageStore()
     
+    let persistentContainer: NSPersistentContainer = {
+        let container = NSPersistentContainer(name: "Photorama")
+        container.loadPersistentStores(completionHandler: {(description, error) in
+            if let error = error
+            {
+                print("Error setting up core data \(error)")
+            }
+        })
+        return container
+    }()
+    
     private let session: URLSession =
     {
         let config = URLSessionConfiguration.default
@@ -44,7 +56,7 @@ class PhotoStore
         {
             return .failure(error!)
         }
-        return FlickrAPI.photos(fromJSON: jsonData)
+        return FlickrAPI.photos(fromJSON: jsonData,into: persistentContainer.viewContext)
     }
     
     func fetchInterestingPhotos(completion: @escaping (PhotosResult) -> Void)
@@ -59,11 +71,41 @@ class PhotoStore
             print(httpURLRespone?.statusCode ?? "")
             print(httpURLRespone?.allHeaderFields ?? "")
             let result = self.processPhotosRequest(data: data, error: error)
+            if case .success = result
+            {
+                do
+                {
+                    try self.persistentContainer.viewContext.save()
+                }
+                catch let error
+                {
+                    print(error)
+                }
+            }
             DispatchQueue.main.sync {
                 completion(result)
             }
         }
         task.resume()
+    }
+    
+    func fetchAllPhotos(completion: @escaping (PhotosResult) -> Void)
+    {
+        let fetchRequest: NSFetchRequest<Photo> = Photo.fetchRequest()
+        let sortByDateTaken = NSSortDescriptor(key: #keyPath(Photo.dateTaken), ascending: true)
+        fetchRequest.sortDescriptors = [sortByDateTaken]
+        let viewContext = persistentContainer.viewContext
+        viewContext.perform {
+            do
+            {
+                let allPhotos = try viewContext.fetch(fetchRequest)
+                completion(.success(allPhotos))
+            }
+            catch let error
+            {
+                completion(.failure(error))
+            }
+        }
     }
     
     func fetchRecentPhotos(completion: @escaping (PhotosResult) -> Void)
@@ -73,7 +115,7 @@ class PhotoStore
         let task = session.dataTask(with: request, completionHandler: { (data, response, error) -> Void in
             if let jsonData = data
             {
-                let result = FlickrAPI.photos(fromJSON: jsonData)
+                let result = FlickrAPI.photos(fromJSON: jsonData,into: self.persistentContainer.viewContext)
                 DispatchQueue.main.sync {
                     completion(result)
                 }
@@ -84,7 +126,11 @@ class PhotoStore
     
     func fetchImage(for photo: Photo, completion: @escaping (ImageResult) -> Void)
     {
-        let photoKey = photo.photoID
+        guard let photoKey = photo.photoID
+        else
+        {
+            preconditionFailure("error in fetchImage func")
+        }
         if let image = imageStore.image(forKey: photoKey)
         {
             OperationQueue.main.addOperation {
@@ -92,8 +138,12 @@ class PhotoStore
             } 
             return
         }
-        let photoURL = photo.remoteURL
-        let request = URLRequest(url: photoURL)
+        guard let photoURL = photo.remoteURL
+        else
+        {
+            preconditionFailure("error in fetchImage func 2")
+        }
+        let request = URLRequest(url: photoURL as URL)
         let task = session.dataTask(with: request)
         {
             (data, response, error) -> Void in
